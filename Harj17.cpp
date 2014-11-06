@@ -30,24 +30,50 @@ struct Tiedot
 
 int main()
 {
-	Tiedot stol = { 0 };
-	cout << "Ohjelma kysyy nyt tietojasi. Ole hyva ja tayta ohjeiden mukaan." << endl;
+	Tiedot stol[5] = {{ "Risto", "Rappaaja", 6.9, "Riimikatu 2", "40520 JKL", 42 },
+					{ "Weijo", "Hietala", 1.2, "Dosentinkatu 7", "40520 JKL", 39 }
+					};
+	
+	cout << "Anna tietosi jarjastelmaan." << endl;
 	cout << "\nKirjoita etunimesi: ";
-	cin >> ws >> stol.etunimi;
+	cin >> ws >> stol[2].etunimi;
 	cout << "\nKirjoita sukunimesi: ";
-	cin >> ws >> stol.sukunimi;
+	cin >> ws >> stol[2].sukunimi;
 	cout << "\nKirjoita koulumatkasi kilometreina: ";
-	cin >> ws >> stol.matka;
+	cin >> ws >> stol[2].matka;
 	cout << "\nKirjoita osoitteesi: ";
 	cin >> ws;
-	cin.get(stol.osoite, 50);
+	cin.get(stol[2].osoite, 50);
 	cout << "\nKirjoita postinumerosi: ";
 	cin >> ws;
-	cin.get(stol.posti, 6);
+	cin.get(stol[2].posti, 20);
 	cout << "\nKirjoita kenkasinumero: ";
-	cin >> ws >> stol.kenka;
+	cin >> ws >> stol[2].kenka;
 
+	while (stol[0].matka>stol[1].matka||stol[1].matka>stol[2].matka)
+	{
+		if (stol[0].matka > stol[1].matka)
+		{
+			stol[3] = stol[0];
+			stol[0] = stol[1];
+			stol[1] = stol[3];
+		}
+		if (stol[1].matka > stol[2].matka)
+		{
+			stol[3] = stol[1];
+			stol[1] = stol[2];
+			stol[2] = stol[3];
+		}
+	}
 
+	for (int i = 0; i < 3; i++)
+	{
+		cout << "\nNimi: " << stol[i].etunimi << " " << stol[i].sukunimi << endl;
+		cout << "Osoite: " << stol[i].osoite << endl;
+		cout << "Postinumero ja -toimipaikka: " << stol[i].posti << endl;
+		cout << "Koulumatkan pituus: " << stol[i].matka << " km" << endl;
+		cout << "Kengankoko: " << stol[i].kenka << endl;
+	}
 	
 	return 0;
 }
